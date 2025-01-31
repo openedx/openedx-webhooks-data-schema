@@ -103,6 +103,7 @@ def validate_salesforce_export(filename, encoding="cp1252"):
         assert reader.fieldnames == [
             "First Name", "Last Name", "Number of Active Ind. CLA Contracts",
             "Title", "Account Name", "Number of Active Entity CLA Contracts", "GitHub Username",
+            "Is Core Contributor"
         ]
         for row in reader:
             acct = row["Account Name"]
