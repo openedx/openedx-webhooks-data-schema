@@ -10,6 +10,12 @@ Change Log
    This project adheres to Semantic Versioning (https://semver.org/).
 
 
+2025-05-02
+~~~~~~~~~~
+
+* Dropped support for Python versions older than 3.11
+* Added support for Python 3.11 and 3.12.
+
 2023-08-09
 ~~~~~~~~~~
 
