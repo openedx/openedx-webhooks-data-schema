@@ -1,0 +1,103 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "repo-tools-data-schema"
+version = "2.0"
+description = "Schema for repo-tools-data"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+license-files = ["LICENSE*"]
+authors = [
+    {name = "Open edX Project", email = "oscm@openedx.org"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = ["Python", "edx"]
+readme = "README.rst"
+
+dependencies = [
+    "PyYAML",
+    "schema",
+]
+
+[project.urls]
+Homepage = "https://github.com/openedx/repo-tools-data-schema"
+Repository = "https://github.com/openedx/repo-tools-data-schema"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+exclude = ["tests*", "*.tests", "*.tests.*"]
+
+[tool.setuptools.package-data]
+"*" = [
+    "*.html",
+    "*.png",
+    "*.gif",
+    "*.js",
+    "*.css",
+    "*.jpg",
+    "*.jpeg",
+    "*.svg",
+]
+
+[tool.uv]
+package = true
+constraint-dependencies = [
+    "Django<6.0",
+    "elasticsearch<7.14.0",
+]
+
+[tool.edx_lint]
+uv_constraints = []
+
+[dependency-groups]
+test = [
+    "pytest-cov",
+]
+quality = [
+    {include-group = "test"},
+    "edx-lint",
+    "isort",
+    "pycodestyle",
+]
+doc = [
+    {include-group = "test"},
+    "doc8",
+    "readme-renderer",
+    "Sphinx",
+    "sphinx-book-theme",
+]
+ci = [
+    "tox",
+    "tox-uv",
+]
+dev = [
+    {include-group = "quality"},
+    {include-group = "ci"},
+    "diff-cover",
+]
+
+[tool.doc8]
+max-line-length = 120
+
+[tool.isort]
+include_trailing_comma = true
+indent = "    "
+line_length = 120
+multi_line_output = 3
+
+[tool.pytest.ini_options]
+addopts = "--cov=repo_tools_data_schema --cov-report=xml"
+
+[tool.coverage.run]
+source = ["repo_tools_data_schema"]
+
